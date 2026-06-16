@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Computing Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111;
+      --gray: #888;
+      --light-gray: #f5f5f5;
+      --border: #e8e8e8;
+      --white: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section:first-of-type { padding-top: 140px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    /* RESEARCH */
+    #research .section-label { margin-bottom: 24px; }
+
+    .research-intro {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 64px;
+      max-width: 640px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .research-card {
+      background: var(--light-gray);
+      padding: 40px 36px;
+    }
+
+    .research-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .research-title {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .research-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* PUBLICATIONS */
+    #publications { border-top: 1px solid var(--border); }
+
+    .pub-list { display: flex; flex-direction: column; gap: 0; }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .pub-img {
+      width: 200px;
+      height: 120px;
+      object-fit: cover;
+      background: var(--light-gray);
+      display: block;
+    }
+
+    .pub-img-placeholder {
+      width: 200px;
+      height: 120px;
+      background: var(--light-gray);
+    }
+
+    .pub-venue {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .pub-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .pub-title a {
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .pub-title a:hover { text-decoration: underline; }
+
+    .pub-authors {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .pub-authors strong { color: var(--black); font-weight: 600; }
+
+    .pub-links { display: flex; gap: 12px; }
+
+    .pub-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+    }
+
+    .pub-link:hover { opacity: 0.5; }
+
+    /* MEMBERS */
+    #members { border-top: 1px solid var(--border); }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+    }
+
+    .member-card { }
+
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--light-gray);
+      margin-bottom: 14px;
+    }
+
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .member-role {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* RECRUITING */
+    #recruiting { border-top: 1px solid var(--border); }
+
+    .recruit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 0;
+    }
+
+    .recruit-card {
+      background: var(--light-gray);
+      padding: 40px 36px;
+    }
+
+    .recruit-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .recruit-card p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .recruit-cta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+    }
+
+    .recruit-cta:hover { opacity: 0.5; }
+
+    /* CONTACT / FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 60px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-left h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-left p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .footer-left a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+    }
+
+    .footer-right {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      section { padding: 80px 24px; }
+      section:first-of-type { padding-top: 100px; }
+      .research-grid { grid-template-columns: 1fr; }
+      .pub-item { grid-template-columns: 1fr; }
+      .pub-img, .pub-img-placeholder { width: 100%; height: 160px; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .recruit-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .footer-right { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Media Computing Lab</a>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#members">Members</a></li>
+    <li><a href="#recruiting">Join Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- RESEARCH -->
+<section id="research">
+  <p class="section-label">Research</p>
+  <h1 class="research-intro">We build technologies that reimagine how people create, consume, and interact with media.</h1>
+  <div class="research-grid">
+    <div class="research-card">
+      <p class="research-num">01</p>
+      <h2 class="research-title">Computational Media Generation & Editing</h2>
+      <p class="research-desc">We develop algorithms and systems that automate and enhance media production — from stage video cross-editing to highlight generation and virtual cinematography.</p>
+    </div>
+    <div class="research-card">
+      <p class="research-num">02</p>
+      <h2 class="research-title">Immersive User Experience</h2>
+      <p class="research-desc">We design and optimize how users experience media — including subtitle presentation, comment display, and personalized playback — across diverse devices and contexts.</p>
+    </div>
+    <div class="research-card">
+      <p class="research-num">03</p>
+      <h2 class="research-title">Human Interaction & Performance</h2>
+      <p class="research-desc">We study how people interact with systems — from precise temporal input to AI response latency — to model and improve human performance in digital environments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-label">Publications</p>
+  <div class="pub-list">
+
+    <div class="pub-item">
+      <img class="pub-img" src="https://w-dlee.github.io/images/teaser_comvi.jpg" alt="ComVi">
+      <div>
+        <p class="pub-venue">CHI 2026</p>
+        <h3 class="pub-title"><a href="https://w-dlee.github.io/comvi">ComVi: Context-Aware Optimized Comment Display in Video Playback</a></h3>
+        <p class="pub-authors">Minsun Kim, <strong>Dawon Lee*</strong>, Junyong Noh* <span style="font-size:11px;">(*Co-corresponding)</span></p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://w-dlee.github.io/comvi">Project Page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <img class="pub-img" src="https://w-dlee.github.io/images/teaser_highlights.png" alt="Highlights">
+      <div>
+        <p class="pub-venue">CHI 2025</p>
+        <h3 class="pub-title"><a href="https://w-dlee.github.io/highlights">Generating Highlight Videos of a User-Specified Length using Most Replayed Data</a></h3>
+        <p class="pub-authors">Minsun Kim, <strong>Dawon Lee*</strong>, Junyong Noh* <span style="font-size:11px;">(*Co-corresponding)</span></p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://w-dlee.github.io/highlights">Project Page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <img class="pub-img" src="https://w-dlee.github.io/images/teaser_optisub.png" alt="OptiSub">
+      <div>
+        <p class="pub-venue">CHI 2025</p>
+        <h3 class="pub-title"><a href="https://w-dlee.github.io/optisub">OptiSub: Optimizing Video Subtitle Presentation for Varied Display and Font Sizes via Speech Pause-Driven Chunking</a></h3>
+        <p class="pub-authors"><strong>Dawon Lee</strong>, Jongwoo Choi, Junyong Noh</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://w-dlee.github.io/optisub">Project Page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <img class="pub-img" src="https://w-dlee.github.io/images/teaser_ctp_abs.png" alt="CTP">
+      <div>
+        <p class="pub-venue">CHI 2024</p>
+        <h3 class="pub-title"><a href="https://w-dlee.github.io/ctp">User Performance in Consecutive Temporal Pointing: An Exploratory Study</a></h3>
+        <p class="pub-authors"><strong>Dawon Lee</strong>, Sunjun Kim, Junyong Noh, Byungjoo Lee</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://w-dlee.github.io/ctp">Project Page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <img class="pub-img" src="https://w-dlee.github.io/images/teaser_popstage.png" alt="PopStage">
+      <div>
+        <p class="pub-venue">TOG / SIGGRAPH Asia 2022</p>
+        <h3 class="pub-title"><a href="https://w-dlee.github.io/popstage">PopStage: The Generation of Stage Cross-Editing Video Based on Spatio-Temporal Matching</a></h3>
+        <p class="pub-authors"><strong>Dawon Lee</strong>, Jung Eun Yoo, Kyungmin Cho, Bumki Kim, Gyeonghun Im, Junyong Noh</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://w-dlee.github.io/popstage">Project Page</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members">
+  <p class="section-label">Members</p>
+  <div class="members-grid">
+    <div class="member-card">
+      <div class="member-photo"></div>
+      <p class="member-name">Dawon Lee</p>
+      <p class="member-role">Principal Investigator</p>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"></div>
+      <p class="member-name">박지형</p>
+      <p class="member-role">Undergraduate Intern</p>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"></div>
+      <p class="member-name">반기태</p>
+      <p class="member-role">Undergraduate Intern</p>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"></div>
+      <p class="member-name">한시우</p>
+      <p class="member-role">Undergraduate Intern</p>
+    </div>
+    <div class="member-card">
+      <div class="member-photo"></div>
+      <p class="member-name">이준우</p>
+      <p class="member-role">Undergraduate Intern</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUITING -->
+<section id="recruiting">
+  <p class="section-label">Join Us</p>
+  <div class="recruit-grid">
+    <div class="recruit-card">
+      <h3>Graduate Students</h3>
+      <p>We are looking for motivated MS and PhD students interested in computational media, HCI, and interactive systems. Strong programming skills and curiosity about how people experience technology are valued.</p>
+      <a class="recruit-cta" href="mailto:dawon.lee@kookmin.ac.kr">Get in touch →</a>
+    </div>
+    <div class="recruit-card">
+      <h3>Undergraduate Interns</h3>
+      <p>We welcome undergraduate students from Kookmin University who want to explore research in media computing. No prior research experience required — just enthusiasm and commitment.</p>
+      <a class="recruit-cta" href="mailto:dawon.lee@kookmin.ac.kr">Get in touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-left">
+    <h2>Media Computing Lab</h2>
+    <p>Kookmin University, Seoul, Korea<br>
+    <a href="mailto:dawon.lee@kookmin.ac.kr">dawon.lee@kookmin.ac.kr</a></p>
+  </div>
+  <div class="footer-right">
+    <p>© 2026 Media Computing Lab</p>
+  </div>
+</footer>
+
+</body>
+</html>
