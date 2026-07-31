@@ -366,3 +366,44 @@ footer {
       footer { flex-direction: column; gap: 24px; align-items: flex-start; }
       .footer-right { text-align: left; }
 }
+
+/* HOME / WELCOME */
+.welcome-text {
+        font-size: 17px;
+        color: var(--black);
+        line-height: 1.8;
+        max-width: 720px;
+        margin-bottom: 64px;
+}
+
+/* NEWS */
+#news { border-top: 1px solid var(--border); }
+
+.news-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+}
+
+.news-item {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        line-height: 1.6;
+}
+
+.news-date {
+        color: var(--gray);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+        .news-item { grid-template-columns: 1fr; gap: 6px; }
+}
