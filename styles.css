@@ -14,7 +14,7 @@ html { scroll-behavior: smooth; }
 body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--black);
-      background: var(--white);
+  background: var(--white);
       font-size: 18px;
       line-height: 1.7;
 }
@@ -146,7 +146,7 @@ section:first-of-type { padding-top: 150px; }
 
 .research-card {
       position: relative;
-      background: var(--white);
+  background: var(--white);
       border-radius: 16px;
       padding: 40px 32px;
       z-index: 1;
@@ -543,7 +543,7 @@ footer {
           top: 64px;
           left: 0;
           right: 0;
-          background: var(--white);
+          background: var(--light-gray); box-shadow: 0 12px 24px rgba(0,0,0,0.08);
           flex-direction: column;
           align-items: center;
           justify-content: center;
